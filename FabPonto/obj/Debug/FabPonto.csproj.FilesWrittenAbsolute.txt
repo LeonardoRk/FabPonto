@@ -1,0 +1,16 @@
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/FabPonto.dll.mdb
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/FabPonto.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/obj/Debug/FabPonto.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/obj/Debug/FabPonto.dll.mdb
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/Microsoft.Web.Infrastructure.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/Newtonsoft.Json.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Net.Http.Formatting.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.Http.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.Http.WebHost.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.Helpers.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.Mvc.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.Razor.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.WebPages.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.WebPages.Deployment.dll
+/home/ygor/Documentos/Desenho/FabPonto/FabPonto/bin/System.Web.WebPages.Razor.dll
