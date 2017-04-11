@@ -4,20 +4,31 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using FabPonto.DAL;
 
 namespace FabPonto.Controllers
 {
     public class HomeController : Controller
     {
+
+        private FabContext db = new FabContext();
+
         public ActionResult Index()
         {
             return View();
         }
 
+
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
+            var users = "";
+            foreach (var user in db.Users.ToList())
+            {
+                users = users + user.Name + " ";
+            }
+
+            ViewBag.Message = users;
             return View();
         }
 
