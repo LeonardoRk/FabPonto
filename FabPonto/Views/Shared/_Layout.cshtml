@@ -6,7 +6,6 @@
   <title>@ViewData["Title"] - WebApplication</title>
   <link rel="stylesheet" href="~/Content/site.css" />
   <link rel="stylesheet" href="~/Content/bootstrap.css" />
-  <link rel="stylesheet" href="~/Content/flat-ui.css" />
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,10 +37,9 @@
 </div>
 
 <environment names="Development">
-  <script src="~/Scripts/jquery-1.9.1.js"></script>
-  <script src="~/Scripts/bootstrap.js"></script>
-  <script src="~/Scripts/site.js" ></script>
-  <script src="~/Scripts/flat-ui.js" ></script>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/site.js"></script>
 </environment>
 
 @RenderSection("scripts", required: false)
