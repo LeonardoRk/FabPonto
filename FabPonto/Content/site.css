@@ -9,8 +9,8 @@ body {
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -21,4 +21,39 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+a.navbar-brand {
+    background: url("Images/logo_transparente.png") no-repeat top left;
+    display: block;
+    width: 190px;
+    height: 70px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.navbar {
+    background-color: #EEE;
+}
+
+.body-content {
+    margin-top: 30px;
+}
+
+li > a {
+    height: 70px;
+    color: #F7941E;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    color: #c56328;
+    background-color: #E3E3E3;
+}
+
+#grad {
+    background: #F7941E; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #F7941E, #c56328); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #F7941E, #c56328); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #F7941E, #c56328); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #F7941E, #c56328); /* Standard syntax */
+    height: 8px;
 }
