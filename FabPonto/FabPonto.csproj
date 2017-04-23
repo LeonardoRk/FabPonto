@@ -102,6 +102,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\barra_superior.png" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\logo_transparente.png" />
     <Content Include="Content\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
