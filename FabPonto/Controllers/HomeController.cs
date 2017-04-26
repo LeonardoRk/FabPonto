@@ -38,5 +38,12 @@ namespace FabPonto.Controllers
 
             return View();
         }
+
+        public ActionResult Hours()
+        {
+
+
+            return View();
+        }
     }
 }
