@@ -100,7 +100,10 @@
     <Compile Include="DAL\FabContext.cs" />
     <Compile Include="DAL\FabInitializer.cs" />
     <Compile Include="Global.asax.cs" />
+    <Compile Include="Models\DayOfWeek.cs" />
+    <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Workday.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

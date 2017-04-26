@@ -10,6 +10,9 @@ namespace FabPonto.DAL
         {
         }
 
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<DayOfWeek> DaysOfWeek { get; set; }
+        public DbSet<Workday> Workdays { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

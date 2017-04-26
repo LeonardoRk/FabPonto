@@ -2,16 +2,17 @@
 
 namespace FabPonto.Models
 {
-    public class User
+    public class Schedule
     {
-        public User()
+        public Schedule()
         {
             this.Workdays = new HashSet<Workday>();
         }
 
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string Starting { get; set; }
+        public string Ending { get; set; }
+
         public virtual ICollection<Workday> Workdays { get; private set; }
     }
 }
