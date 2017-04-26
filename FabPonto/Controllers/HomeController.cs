@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 using FabPonto.DAL;
+using MySql.Data.MySqlClient;
 
 namespace FabPonto.Controllers
 {
@@ -23,6 +21,7 @@ namespace FabPonto.Controllers
         {
 
             var users = "";
+
             foreach (var user in db.Users.ToList())
             {
                 users = users + user.Name + " ";
@@ -43,7 +42,25 @@ namespace FabPonto.Controllers
         {
 
 
+            MySqlConnection connection = new MySqlConnection("Database=FabContext;Data Source=localhost;User " +
+                                                             "Id=root;Password=root");
+            connection.Open();
+
+            MySqlCommand command =  connection.CreateCommand();
+            command.CommandText = "select * from hours";
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                string a = reader.GetString(0);
+                string b = reader["id"].ToString();
+                ViewBag.Message = a;
+            }
+            reader.Close();
+
             return View();
         }
+
+
+
     }
 }
