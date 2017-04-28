@@ -1,5 +1,32 @@
 ﻿@{
-    ViewBag.Title = "Contact";
-}
-<h3>@ViewBag.Message</h3>
+    if (IsPost) {
+        string entryTime = Request.Form["entryTime"];
+        string exitTime = Request.Form["exitTime"];
 
+        <text>
+            Hora de entrada: @entryTime <br />
+            Hora de saída: @exitTime <br />
+        </text>
+    }
+}
+<html>
+    <body>
+        <form method="post" >
+        <fieldset>
+            <div>
+                <label for="entryTime">Hora de entrada:</label>
+                <input type="time" name="entryTime" value="" />
+            </div>
+
+            <div>
+                <label for="exitTime">Hora de saída:</label>
+                <input type="time" name="exitTime" value="" />
+            </div>
+            <div>
+                <label>&nbsp;</label>
+                <input type="submit" value="Registrar" class="submit" />
+            </div>
+        </fieldset>
+        </form>
+    </body>
+</html>
