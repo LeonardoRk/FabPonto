@@ -40,23 +40,6 @@ namespace FabPonto.Controllers
 
         public ActionResult Hours()
         {
-
-
-            MySqlConnection connection = new MySqlConnection("Database=FabContext;Data Source=localhost;User " +
-                                                             "Id=root;Password=root");
-            connection.Open();
-
-            MySqlCommand command =  connection.CreateCommand();
-            command.CommandText = "select * from hours";
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                string a = reader.GetString(0);
-                string b = reader["id"].ToString();
-                ViewBag.Message = a;
-            }
-            reader.Close();
-
             return View();
         }
 
