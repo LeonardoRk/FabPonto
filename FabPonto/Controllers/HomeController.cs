@@ -34,6 +34,11 @@ namespace FabPonto.Controllers
             return View();
         }
 
+        public ActionResult AvailabilityRegister()
+        {
+            return View();
+        }
+
         public ActionResult PageData(IDataTablesRequest request)
         {
             var data = GetWorkdayData();
