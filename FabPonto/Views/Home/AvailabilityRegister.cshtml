@@ -59,25 +59,29 @@
             pageLength: 11,
             serverSide: true,
             ajax: "/home/pagedata",
-            columns: [
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Portuguese-Brasil.json"
+            },
+            "lengthMenu": [ [11, 200], [11, "All"] ],
+                columns: [
                 {
                     name: 'name',
                     data: 'name',
-                    title: "Name",
+                    title: "Nome",
                     sortable: false,
                     searchable: false
                 },
                 {
                     name: 'starting',
                     data: "starting",
-                    title: "Starting",
+                    title: "Início",
                     sortable: false,
                     searchable: false
                 },
                 {
                     name: 'ending',
                     data: "ending",
-                    title: "Ending",
+                    title: "Fim",
                     sortable: false,
                     searchable: false
                 }
