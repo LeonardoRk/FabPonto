@@ -57,7 +57,6 @@ namespace FabPonto.Controllers
         [HttpPost]
         public ActionResult AddAvailability(Dictionary<string, string> availability)
         {
-            Console.Write(availability);
             var name = availability["name"];
             var starting = availability["starting"];
             var ending = availability["ending"];

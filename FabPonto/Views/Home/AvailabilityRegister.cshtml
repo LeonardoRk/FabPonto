@@ -4,51 +4,6 @@
 
 <h2>@ViewBag.Title</h2>
 
-@*<select>*@
-@*    @foreach (var daysOfWeek in ViewBag.DaysOfWeek)*@
-@*    {*@
-@*        <option value=@daysOfWeek.Name>@daysOfWeek.Name</option>*@
-@*    }*@
-@*</select>*@
-@**@
-@*<select>*@
-@*    @foreach (var schedule in ViewBag.Schedules)*@
-@*    {*@
-@*        <option value='@schedule.Starting @schedule.Ending'>@schedule.Starting às @schedule.Ending</option>*@
-@*    }*@
-@*</select>*@
-@**@
-@*<button type="button" class="btn btn-success">Adicionar</button>*@
-@**@
-@*<table class="table table-striped">*@
-@*    <thead>*@
-@*        <tr>*@
-@*            <th>Dia da semana</th>*@
-@*            <th>Entrada</th>*@
-@*            <th>Saída</th>*@
-@*            <th>Add/Rem</th>*@
-@*        </tr>*@
-@*    </thead>*@
-@*    <tbody>*@
-@*    @foreach (var workday in ViewBag.Workdays)*@
-@*    {*@
-@*        <tr>*@
-@*            <td>@workday[0].Name</td>*@
-@*            <td>@workday[1].Starting</td>*@
-@*            <td>@workday[1].Ending</td>*@
-@*            <td><button id='@workday[0].Name @workday[1].Starting @workday[1].Ending' class="btn btn-success"*@
-@*                        type="button">Adicionar</button></td>*@
-@*        </tr>*@
-@*    }*@
-@*    </tbody>*@
-@*</table>*@
-@**@
-@*@using(Html.BeginForm())*@
-@*{*@
-@*    <input type="text" name="reportName" />*@
-@*    <input type="submit" />*@
-@*}*@
-
 <div class="alert alert-success alert-dismissible show hidden" role="alert">
     <button type="button" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -95,13 +50,6 @@
                     sortable: false
                 }
             ]
-//            "initComplete": function () {
-//                var api = this.api();
-//                api.$('button').click( function () {
-//                    var data = api.row( $(this).parents('tr') ).data();
-//                    alert( data[0] + "das " + data[1] + "até as " + data[1]);
-//                } );
-//            }
         });
 
          $('#myTable tbody').on( 'click', 'button', function () {
