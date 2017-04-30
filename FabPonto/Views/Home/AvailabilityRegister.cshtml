@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Registre suas horas, parça";
+    ViewBag.Title = "Registro de diponibilidade";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -16,14 +16,15 @@
 <script>
      $(document).ready(function () {
          var table = $('#myTable').DataTable({
-            pageLength: 11,
+            pageLength: 1000,
             serverSide: true,
             ajax: "/home/pagedata",
             "language": {
                 "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Portuguese-Brasil.json"
             },
-            "lengthMenu": [ [11, 200], [11, "All"] ],
-                columns: [
+            "bLengthChange": false,
+            searching: false,
+            columns: [
                 {
                     name: 'name',
                     data: 'name',
@@ -44,13 +45,22 @@
                 },
                 {
                     title: "Add/Rem",
-                    "targets": -1,
-                    "data": null,
-                    "defaultContent": "<button class='btn btn-success'>Adiconar</button>",
-                    sortable: false
+                    sortable: false,
+                    data: null,
+                    defaultContent: "<button class='btn btn-success'>Adicionar</button>"
                 }
-            ]
-        });
+            ],
+            "initComplete": function() {
+                $.getJSON('/Home/GetWorkdays', function(data) {
+                    var obj = $.parseJSON(data);
+                    $.each(obj, function(key, value) {
+                        var td = table.cell(value.ID - 1, 3).node();
+                        $(td).find('button').removeClass('btn-success').addClass('btn-danger').
+                            text("Remover");
+                    });
+                });
+            }
+         });
 
          $('#myTable tbody').on( 'click', '.btn-success', function () {
              $(this).removeClass('btn-success');
