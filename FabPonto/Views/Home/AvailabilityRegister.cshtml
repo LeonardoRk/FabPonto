@@ -4,7 +4,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div class="alert alert-success alert-dismissible show hidden" role="alert">
+<div class="alert alert-success alert-dismissible hidden" role="alert">
     <button type="button" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -52,14 +52,38 @@
             ]
         });
 
-         $('#myTable tbody').on( 'click', 'button', function () {
+         $('#myTable tbody').on( 'click', '.btn-success', function () {
+             $(this).removeClass('btn-success');
+             $(this).addClass('btn-danger');
+             $(this).text('Remover');
+
+             $('.alert').removeClass('alert-danger');
+             $('.alert').addClass('alert-success');
+
              var availability = table.row( $(this).parents('tr') ).data();
 
              $.post('/Home/AddAvailability', { 'availability': availability }, function() {
                  $('.alert').removeClass('hidden');
-                 $("#added").text("Adicionado " + availability["name"] + " das " +
+                 $('#added').text("Adicionado " + availability["name"] + " das " +
                      availability["starting"] + " até as " + availability["ending"]);
              });
+         });
+
+         $('#myTable tbody').on( 'click', '.btn-danger', function () {
+             $(this).removeClass('btn-danger');
+             $(this).addClass('btn-success');
+             $(this).text('Adicionar');
+
+             $('.alert').removeClass('alert-success');
+             $('.alert').addClass('alert-danger');
+
+             var availability = table.row( $(this).parents('tr') ).data();
+
+             $('.alert').removeClass('hidden');
+             $('#added').text("Removido " + availability["name"] + " das " +
+                 availability["starting"] + " até as " + availability["ending"]);
+
+
          });
 
          $('.alert .close').on('click', function() {
