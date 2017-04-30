@@ -49,8 +49,10 @@
 @*    <input type="submit" />*@
 @*}*@
 
-
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success alert-dismissible show hidden" role="alert">
+    <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <p id="added" class="text-center"></p>
 </div>
 
@@ -106,9 +108,14 @@
              var availability = table.row( $(this).parents('tr') ).data();
 
              $.post('/Home/AddAvailability', { 'availability': availability }, function() {
+                 $('.alert').removeClass('hidden');
                  $("#added").text("Adicionado " + availability["name"] + " das " +
                      availability["starting"] + " até as " + availability["ending"]);
              });
+         });
+
+         $('.alert .close').on('click', function() {
+             $(this).parent().addClass('hidden');
          });
     });
 
