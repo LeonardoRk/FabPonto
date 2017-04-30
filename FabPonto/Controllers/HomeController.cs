@@ -8,6 +8,7 @@ using System.Web.Mvc.Ajax;
 using FabPonto.DAL;
 using DataTables.AspNet.Core;
 using DataTables.AspNet.Mvc5;
+using Newtonsoft.Json;
 
 namespace FabPonto.Controllers
 {
@@ -84,12 +85,25 @@ namespace FabPonto.Controllers
                                                                  sched.Ending == ending);
             var workday = _db.Workdays.FirstOrDefault(wd => wd.DayOfWeekID == dayOfWeek.ID &&
                                                             wd.ScheduleID == schedule.ID);
-            var user = _db.Users.First();
+            var currentUser = _db.Users.First();
 
-            workday?.Users.Remove(user);
+            workday?.Users.Remove(currentUser);
             _db.SaveChanges();
 
             return new JsonResult { Data = new {status = true} };
+        }
+
+        [HttpGet]
+        public ActionResult GetWorkdays()
+        {
+            var currentUser = _db.Users.First();
+            var workDays = currentUser.Workdays;
+            var json = JsonConvert.SerializeObject(workDays, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
 
         private IEnumerable<Dictionary<string, string>> GetWorkdayData()
