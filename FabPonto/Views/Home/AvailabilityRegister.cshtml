@@ -79,9 +79,11 @@
 
              var availability = table.row( $(this).parents('tr') ).data();
 
-             $('.alert').removeClass('hidden');
-             $('#added').text("Removido " + availability["name"] + " das " +
-                 availability["starting"] + " até as " + availability["ending"]);
+             $.post('/Home/RemoveAvailability', { 'availability': availability }, function() {
+                 $('.alert').removeClass('hidden');
+                 $('#added').text("Removido " + availability["name"] + " das " +
+                     availability["starting"] + " até as " + availability["ending"]);
+             });
 
 
          });

@@ -73,6 +73,25 @@ namespace FabPonto.Controllers
             return new JsonResult { Data = new {status = true} };
         }
 
+        [HttpPost]
+        public ActionResult RemoveAvailability(Dictionary<string, string> availability)
+        {
+            var name = availability["name"];
+            var starting = availability["starting"];
+            var ending = availability["ending"];
+            var dayOfWeek = _db.DaysOfWeek.FirstOrDefault(day => day.Name == name);
+            var schedule = _db.Schedules.FirstOrDefault(sched => sched.Starting == starting &&
+                                                                 sched.Ending == ending);
+            var workday = _db.Workdays.FirstOrDefault(wd => wd.DayOfWeekID == dayOfWeek.ID &&
+                                                            wd.ScheduleID == schedule.ID);
+            var user = _db.Users.First();
+
+            workday?.Users.Remove(user);
+            _db.SaveChanges();
+
+            return new JsonResult { Data = new {status = true} };
+        }
+
         private IEnumerable<Dictionary<string, string>> GetWorkdayData()
         {
             var workdayData = new List<Dictionary<string, string>>();
