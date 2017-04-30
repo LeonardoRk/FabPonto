@@ -50,6 +50,9 @@
 @*}*@
 
 
+<div class="alert alert-success" role="alert">
+    <p id="added" class="text-center"></p>
+</div>
 
 <table id="myTable"></table>
 
@@ -103,7 +106,7 @@
 
          $('#myTable tbody').on( 'click', 'button', function () {
              var data = table.row( $(this).parents('tr') ).data();
-             alert( data["name"] + " das " + data["starting"] + " até as " + data["ending"]);
+             $("#added").text("Adicionado " + data["name"] + " das " + data["starting"] + " até as " + data["ending"]);
          });
     });
 
