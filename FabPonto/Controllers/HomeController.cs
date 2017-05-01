@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using FabPonto.DAL;
+using FabPonto.Utils;
 
 namespace FabPonto.Controllers
 {
@@ -21,14 +22,18 @@ namespace FabPonto.Controllers
 
         public ActionResult About()
         {
+//
+//            var users = "";
+//            foreach (var user in db.Users.ToList())
+//            {
+//                users = users + user.Name + " ";
+//            }
+//
+//            ViewBag.Message = users;
 
-            var users = "";
-            foreach (var user in db.Users.ToList())
-            {
-                users = users + user.Name + " ";
-            }
+            LdapConnection ldapConnection = new LdapConnection();
+            ViewBag.Message = ldapConnection.SearchAllUsers();
 
-            ViewBag.Message = users;
             return View();
         }
 
