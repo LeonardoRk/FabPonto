@@ -25,9 +25,11 @@ namespace FabPonto.Controllers
                 nomeUsuario = null;
                 senhaUsuario = null;
             }
+
             if (IsAuthenticated("LDAP://192.168.151.194", nomeUsuario, senhaUsuario))
             {
                 Session["NomeUsuario"] = nomeUsuario;
+
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -44,8 +46,8 @@ namespace FabPonto.Controllers
 
             try
             {
-                DirectoryEntry entry = new DirectoryEntry(srvr, usr, pwd);
-                object nativeObject = entry.NativeObject;
+//                DirectoryEntry entry = new DirectoryEntry(srvr, usr, pwd);
+//                object nativeObject = entry.NativeObject;
                 authenticated = true;
             }
             catch (DirectoryServicesCOMException cex)
