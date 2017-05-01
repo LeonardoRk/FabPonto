@@ -25,7 +25,7 @@ namespace FabPonto.Controllers
                 nomeUsuario = null;
                 senhaUsuario = null;
             }
-            if (IsAuthenticated("LDAP://10.0.3.230", nomeUsuario, senhaUsuario))
+            if (IsAuthenticated("LDAP://192.168.151.194", nomeUsuario, senhaUsuario))
             {
                 Session["NomeUsuario"] = nomeUsuario;
                 return RedirectToAction("Index", "Home");
@@ -61,6 +61,13 @@ namespace FabPonto.Controllers
             }
 
             return authenticated;
+        }
+
+        public ActionResult LogOff()
+        {
+            Session["NomeUsuario"] = null;
+
+            return RedirectToAction("Index", "Home");
         }
 
     }
