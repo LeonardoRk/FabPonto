@@ -58,7 +58,7 @@ namespace FabPonto.Controllers
         }
 
 
-        public bool ValidateHoursContainsOnlyNumber(string entryTimeLower, string exitTimeLower)
+        public bool ValidateHoursIsInLimit(string entryTimeLower, string exitTimeLower)
         {
             string entry_hour = Convert.ToString(entryTimeLower[0]) + Convert.ToString(entryTimeLower[1]);
             int entry_hour_int = Convert.ToInt32(entry_hour);
@@ -114,7 +114,35 @@ namespace FabPonto.Controllers
         }
 
 
-        public bool ValidateMinutesContainsOnlyNumber(string entryTimeLower, string exitTimeLower)
+        public bool ValidateTimeContainsOnlyNumber(string entryTimeLower , string exitTimeLower)
+        {
+            string entry_hour = null, exit_hour= null , entry_minute = null , exit_minute = null;
+            int entry_hour_int = -1, exit_hour_int = -1 , entry_minute_int = -1 , exit_minute_int = -1;
+            try
+            {
+                entry_hour = Convert.ToString(entryTimeLower[0]) + Convert.ToString(entryTimeLower[1]);
+                entry_hour_int = Convert.ToInt32(entry_hour);
+
+                exit_hour = Convert.ToString(exitTimeLower[0]) + Convert.ToString(exitTimeLower[1]);
+                exit_hour_int = Convert.ToInt32(exit_hour);
+
+                entry_minute = Convert.ToString(entryTimeLower[3]) + Convert.ToString(entryTimeLower[4]);
+                entry_minute_int = Convert.ToInt32(entry_minute);
+
+                exit_minute = Convert.ToString(exitTimeLower[3]) + Convert.ToString(exitTimeLower[4]);
+                exit_minute_int = Convert.ToInt32(exit_minute);
+            }
+            catch (FormatException exception)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+
+        public bool ValidateMinutesIsInLimits(string entryTimeLower, string exitTimeLower)
         {
             string entry_hour = Convert.ToString(entryTimeLower[3]) + Convert.ToString(entryTimeLower[4]);
             int entry_minute_int = Convert.ToInt32(entry_hour);

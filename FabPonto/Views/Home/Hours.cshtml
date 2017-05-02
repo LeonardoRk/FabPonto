@@ -17,17 +17,24 @@
         bool exitBiggerEntry = false;
         bool validateFiveLength = false;
         bool hourInOfLimits = false;
+        bool timeContainsOnlyNumber = false;
         bool minutesInOfLimits = false;
 
         bool timeNotEmpty = hoursController.ValidateTimeIsNotEmpty(entryTimeLower, exitTimeLower);
         if (timeNotEmpty)
         {
-            containTwoPoints = hoursController.ValidateTwoPointsOnHours(entryTimeLower, exitTimeLower );
-            exitBiggerEntry = hoursController.AssertExitTimeIsAfterThanEntryTime(entryTimeLower , exitTimeLower);
-            validateFiveLength = hoursController.ValidateFiveLenght(entryTimeLower, exitTimeLower);
-            hourInOfLimits = hoursController.ValidateHoursContainsOnlyNumber(entryTimeLower, exitTimeLower);
-            minutesInOfLimits = hoursController.ValidateMinutesContainsOnlyNumber(entryTimeLower, exitTimeLower);
+            timeContainsOnlyNumber = hoursController.ValidateTimeContainsOnlyNumber(entryTimeLower , exitTimeLower);
+            if (timeContainsOnlyNumber)
+            {
+                containTwoPoints = hoursController.ValidateTwoPointsOnHours(entryTimeLower, exitTimeLower );
+                exitBiggerEntry = hoursController.AssertExitTimeIsAfterThanEntryTime(entryTimeLower , exitTimeLower);
+                validateFiveLength = hoursController.ValidateFiveLenght(entryTimeLower, exitTimeLower);
+                hourInOfLimits = hoursController.ValidateHoursIsInLimit(entryTimeLower, exitTimeLower);
+                minutesInOfLimits = hoursController.ValidateMinutesIsInLimits(entryTimeLower, exitTimeLower);
+            }
+
         }
+
 
         if (exitBiggerEntry && validateFiveLength && timeNotEmpty && containTwoPoints
             && hourInOfLimits && minutesInOfLimits)
