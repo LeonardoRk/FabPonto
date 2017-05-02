@@ -1,49 +1,77 @@
-﻿@using MySql.Data.MySqlClient
+﻿@using System.Collections
+@using System.Web.UI.WebControls
+@using FabPonto.Controllers
+
+
 @{
+
     if (IsPost) {
+        HoursController hoursController = new HoursController();
+
         string entryTime = Request.Form["entryTime"];
         string exitTime = Request.Form["exitTime"];
+        string entryTimeLower = entryTime.ToLower();
+        string exitTimeLower = exitTime.ToLower();
 
-        MySqlConnection connection = new MySqlConnection("Database=FabContext;Data Source=localhost;User " +
-                                                         "Id=root;Password=root");
-        connection.Open();
+        bool containTwoPoints = false;
+        bool exitBiggerEntry = false;
+        bool validateFiveLength = false;
+        bool hourInOfLimits = false;
+        bool minutesInOfLimits = false;
 
-        MySqlCommand insertCommand = connection.CreateCommand();
-        const string SECONDS = ":00";
-        string VARIABLEFROMDATABASE = entryTime+SECONDS + "','" + exitTime+SECONDS ;
-        insertCommand.CommandText = "INSERT INTO hours (entry_time,exit_time) VALUES ('" + VARIABLEFROMDATABASE +"')";
-        insertCommand.ExecuteNonQuery();
-
-        MySqlCommand selectCommand =  connection.CreateCommand();
-        selectCommand.CommandText = "select * from hours";
-        MySqlDataReader reader = selectCommand.ExecuteReader();
-        string entryTimeFromDatabase = null;
-        string exitTimeFromDatabase = null;
-        while (reader.Read())
+        bool timeNotEmpty = hoursController.ValidateTimeIsNotEmpty(entryTimeLower, exitTimeLower);
+        if (timeNotEmpty)
         {
-            reader.GetString(0);
-            entryTimeFromDatabase = reader["entry_time"].ToString();
-            exitTimeFromDatabase = reader["exit_time"].ToString();
+            containTwoPoints = hoursController.ValidateTwoPointsOnHours(entryTimeLower, exitTimeLower );
+            exitBiggerEntry = hoursController.AssertExitTimeIsAfterThanEntryTime(entryTimeLower , exitTimeLower);
+            validateFiveLength = hoursController.ValidateFiveLenght(entryTimeLower, exitTimeLower);
+            hourInOfLimits = hoursController.ValidateHoursContainsOnlyNumber(entryTimeLower, exitTimeLower);
+            minutesInOfLimits = hoursController.ValidateMinutesContainsOnlyNumber(entryTimeLower, exitTimeLower);
         }
-        <text>
-            Hora de entrada(database): @entryTimeFromDatabase <br />
-            Hora de saída(database): @exitTimeFromDatabase <br />
-        </text>
-        reader.Close();
+
+        if (exitBiggerEntry && validateFiveLength && timeNotEmpty && containTwoPoints
+            && hourInOfLimits && minutesInOfLimits)
+        {
+            hoursController.storeHoursOnDatabase(entryTimeLower, exitTimeLower);
+            <text>
+                Horário cadastrado com sucesso!
+            </text>
+        }
+        else
+        {
+            ArrayList errors = null;
+            errors = hoursController.InsertErrors(exitBiggerEntry , hourInOfLimits , minutesInOfLimits , timeNotEmpty);
+
+            if (errors != null)
+            {
+                int percorreErros = 0;
+                for (percorreErros = 0; percorreErros < errors.Count; percorreErros++)
+                {
+                    <text>
+                        Erro @(percorreErros+1): @errors[percorreErros]  <br/>
+                    </text>
+                }
+
+            }
+
+        }
+
     }
+
+
 }
 <html>
     <body>
-        <form method="post" >
+        <form method="post"  >
         <fieldset>
             <div>
                 <label for="entryTime">Hora de entrada:</label>
-                <input type="time" name="entryTime" value="" />
+                <input type="time" name="entryTime" value="" placeholder="09:40" />
             </div>
 
             <div>
                 <label for="exitTime">Hora de saída:</label>
-                <input type="time" name="exitTime" value="" />
+                <input type="time" name="exitTime" value="" placeholder="19:27" />
             </div>
             <div>
                 <label>&nbsp;</label>

@@ -97,6 +97,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HoursController.cs" />
     <Compile Include="DAL\FabContext.cs" />
     <Compile Include="DAL\FabInitializer.cs" />
     <Compile Include="Global.asax.cs" />
