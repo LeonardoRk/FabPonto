@@ -9,22 +9,24 @@
             <form action="@Url.Action("Login", "Login")" method="post">
                 @Html.ValidationSummary(true, "")
                 <div class="form-group">
-                    <div class="editor-label">
+                    <div class="col-md-12">
                         @Html.Label("Nome de usuário")
                     </div>
-                    <div class="editor-field">
+                    <div class="col-md-12">
                         @Html.TextBox("nomeUsuario", null, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="editor-label">
+                    <div class="col-md-12">
                         @Html.Label("Senha")
                     </div>
-                    <div class="editor-field">
+                    <div class="col-md-12">
                         @Html.Password("senhaUsuario", null, new { @class = "form-control" })
                     </div>
                 </div>
-                <input type="submit" value="Login" name="submitLogin"class="btn btn-sm btn-success btn-block" />
+                <div class="col-md-12" style="margin-top: 10px;">
+                    <input type="submit" value="Login" name="submitLogin"class="btn btn-sm btn-success btn-block" />
+                </div>
             </form>
         </div>
     </fieldset>
