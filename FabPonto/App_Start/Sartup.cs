@@ -5,7 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 
 namespace FabPonto
 {
-    public class SartUp
+    public class Sartup
     {
         public void Configuration(IAppBuilder app)
         {
