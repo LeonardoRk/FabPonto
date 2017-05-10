@@ -15,7 +15,7 @@ namespace FabPonto.Controllers
     public class HomeController : Controller
     {
 
-        private readonly FabContext _db = new FabContext();
+        private readonly FabContext _db = FabContext.GetFabContextInstance();
 
         public ActionResult Index()
         {

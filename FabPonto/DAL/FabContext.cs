@@ -6,8 +6,36 @@ namespace FabPonto.DAL
 {
     public class FabContext: DbContext
     {
-        public FabContext(): base("FabContext")
+        private const string DATABASE_NAME = "FabContext";
+        private static FabContext databaseInstance = null;
+        private static object myLock = new object();
+
+        private FabContext() : base(DATABASE_NAME)
         {
+        }
+
+        public static FabContext GetFabContextInstance()
+        {
+
+            if (databaseInstance == null)
+            {
+                lock (myLock)
+                {
+                    if (databaseInstance == null)
+                    {
+                        databaseInstance = new FabContext();
+                    }
+                    else
+                    {
+                        //nothing to do
+                    }
+                }
+            }
+            else
+            {
+                // nothing to do
+            }
+            return databaseInstance;
         }
 
         public DbSet<Schedule> Schedules { get; set; }
