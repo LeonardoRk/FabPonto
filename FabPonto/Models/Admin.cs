@@ -2,9 +2,9 @@
 
 namespace FabPonto.Models
 {
-    public sealed class User:AbstractUser
+    public sealed class Admin:AbstractUser
     {
-        public User()
+        public Admin()
         {
             Workdays = new HashSet<Workday>();
             WorkingState = new NotWorkingState();
