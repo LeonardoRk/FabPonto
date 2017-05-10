@@ -7,9 +7,9 @@ namespace FabPonto.Models
         public const int NormalUser = 0;
         public const int AdminUser = 1;
 
-        public IUser FactoryUser(int userType)
+        public AbstractUser FactoryUser(int userType)
         {
-            IUser user;
+            AbstractUser user;
 
             switch (userType)
             {
