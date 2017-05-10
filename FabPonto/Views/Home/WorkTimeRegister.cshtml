@@ -1,0 +1,49 @@
+﻿@using FabPonto.Models
+
+@{
+    ViewBag.Title = "Work Time Register";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<button type="button" class="btn btn-success" onclick="startTime()" style="display:block" >Iniciar hora de trabalho</button>
+
+<button type="button" class="btn btn-warning" onclick="" style="display:none" >Finalizar hora de trabalho</button>
+
+
+<script>
+    function startTime() {
+        @{ UserFactoryMethod createUser = new UserFactoryMethod();
+           AbstractUser user = createUser.FactoryUser(0);
+
+           user.ChangeWorkingState();
+
+           IState workingState = new WorkingState();
+           IState notWorkingState = new NotWorkingState();
+        }
+
+        @if (user.WorkingState.GetType() == workingState.GetType())
+        {
+            <text>$('#ErrorMessage').text('Error');
+                alert("trabalhando ");
+            </text>
+        }
+        else if (user.WorkingState.GetType() == notWorkingState.GetType())
+        {
+            <text>$('#Registration').text('Done!');
+                alert("nao trabalhando ");
+            </text>
+        }
+        else
+        {
+            //nothing to do
+        }
+
+    }
+</script>
+
+
+
+<script type="text/javascript">
+
+</script>
