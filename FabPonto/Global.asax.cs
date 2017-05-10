@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
-using  FabPonto.App_Start;
 
 namespace FabPonto
 {
