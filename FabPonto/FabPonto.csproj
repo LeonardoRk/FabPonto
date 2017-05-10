@@ -106,11 +106,17 @@
     <Compile Include="DAL\FabContext.cs" />
     <Compile Include="DAL\FabInitializer.cs" />
     <Compile Include="Global.asax.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\DayOfWeek.cs" />
+    <Compile Include="Models\IState.cs" />
+    <Compile Include="Models\AbstractUser.cs" />
+    <Compile Include="Models\NotWorkingState.cs" />
     <Compile Include="Models\SampleEntity.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserFactoryMethod.cs" />
     <Compile Include="Models\Workday.cs" />
+    <Compile Include="Models\WorkingState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
