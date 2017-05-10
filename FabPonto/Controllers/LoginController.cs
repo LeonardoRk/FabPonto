@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace FabPonto.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         public ActionResult Index()

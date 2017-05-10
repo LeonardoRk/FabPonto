@@ -8,6 +8,7 @@ using FabPonto.DAL;
 
 namespace FabPonto.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
 
