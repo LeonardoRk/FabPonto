@@ -138,5 +138,54 @@ namespace FabPonto.Controllers
             return workdayData;
         }
 
+        public FileContentResult DownloadCSV()
+        {
+            GenerateReport();
+            var fileBytes = System.IO.File.ReadAllBytes("availabilityReporter.csv");
+
+            return File(fileBytes, "text/csv", "availabilityReporter.csv");
+        }
+
+        public void GenerateReport()
+        {
+            var data = new List<string[]>();
+            using (var db = new FabContext())
+            {
+                foreach (var user in db.Users.ToList())
+                {
+                    var userName = user.Name;
+                    var workdays = user.Workdays;
+                    var availability = "";
+                    foreach (var workday in workdays)
+                    {
+                        var dayID = workday.DayOfWeekID;
+                        var schedID = workday.ScheduleID;
+                        var dayOfWeek = db.DaysOfWeek.FirstOrDefault(day => day.ID == dayID);
+                        var schedule = db.Schedules.FirstOrDefault(sched => sched.ID == schedID);
+                        availability += dayOfWeek.Name + " das " + schedule.Starting + " às " + schedule.Ending + '\n';
+                    }
+                    var userAvailability = new[]
+                    {
+                        userName,
+                        availability
+                    };
+                    data.Add(userAvailability);
+                }
+            }
+
+            using (var csv = new CsvWriter(new StreamWriter("availabilityReporter.csv")))
+            {
+                csv.WriteField("Nome");
+                csv.WriteField("Disponibilidade");
+                csv.NextRecord();
+
+                foreach (var userAvailability in data)
+                {
+                    csv.WriteField(userAvailability[0]);
+                    csv.WriteField(userAvailability[1]);
+                    csv.NextRecord();
+                }
+            }
+        }
     }
 }
