@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 
 namespace FabPonto.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
