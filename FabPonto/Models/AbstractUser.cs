@@ -9,6 +9,7 @@ namespace FabPonto.Models
         public string Email { get; set; }
         public IState WorkingState { get; set; }
         public virtual ICollection<Workday> Workdays { get; set; }
+        public string Password { get; set; }
 
         public void ChangeWorkingState()
         {
