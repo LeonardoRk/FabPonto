@@ -12,5 +12,14 @@ namespace FabPonto.Models
         {
             userArray = new ArrayList();
         }
-    }
+
+		public void addUser(User user)
+		{
+			userArray.Add(user);
+		}
+
+        public void removeUser(User user) {
+            userArray.Remove(user);
+        }
+	}
 }
