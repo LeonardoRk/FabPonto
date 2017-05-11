@@ -1,0 +1,76 @@
+﻿@using FabPonto.Models
+
+@{
+    ViewBag.Title = "Work Time Register";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<button type="button" id="start" class="btn btn-success" onclick="startTime()" style="display:block" >Iniciar hora de trabalho</button>
+
+<button type="button" id="end" class="btn btn-warning" onclick="endTime()" style="display:none" >Finalizar hora de trabalho</button>
+
+
+<script>
+    function createUser() {
+        @{
+
+            UserFactoryMethod createUser = new UserFactoryMethod();
+            IUser user = createUser.FactoryUser(0);
+
+            user.ChangeWorkingState();
+        }
+
+        alert("Created User");
+        return @user;
+    }
+</script>
+
+<script>
+    function startTime() {
+        document.getElementById("end").style.display = "block";
+        document.getElementById('start').style.display = "none";
+
+        $.get("/WorktimeRegister/SaveUserWorkTime", function(data){alert(data);});
+
+
+        //printState();
+    }
+
+    function endTime() {
+        document.getElementById("end").style.display = "none";
+        document.getElementById('start').style.display = "block";
+
+        $.get("/WorktimeRegister/SaveUserWorkTime", function(data){alert(data);});
+
+        //printState();
+    }
+
+    function printState() {
+        @{
+            IState workingState = new WorkingState();
+            IState notWorkingState = new NotWorkingState();
+        }
+
+        @if (user.WorkingState.GetType() == workingState.GetType())
+        {
+            <text>
+                alert("@DateTime.Now.ToString("h:mm:ss tt")");
+            </text>
+        }
+        else if (user.WorkingState.GetType() == notWorkingState.GetType())
+        {
+            <text>
+                alert("@DateTime.Now.ToString("h:mm:ss tt")");
+            </text>
+        }
+        else
+        {
+            //nothing to do
+        }
+    }
+
+</script>
+
+

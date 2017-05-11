@@ -4,6 +4,12 @@ namespace FabPonto.Models
 {
     public class Admin:IUser
     {
+        public ConcreteIterator CreateIterator()
+        {
+            ConcreteIterator workdaysIterator = new ConcreteIterator(this);
+            return workdaysIterator;
+        }
+
         public Admin()
         {
             this.Workdays = new HashSet<Workday>();

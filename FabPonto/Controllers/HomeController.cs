@@ -40,6 +40,11 @@ namespace FabPonto.Controllers
             return View();
         }
 
+        public ActionResult WorkTimeRegister()
+        {
+            return View();
+        }
+
         public ActionResult PageData(IDataTablesRequest request)
         {
             var data = GetWorkdayData();

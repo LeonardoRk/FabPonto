@@ -4,6 +4,13 @@ namespace FabPonto.Models
 {
     public class User:IUser
     {
+        private IIterator workdayIterator = null;
+
+        public ConcreteIterator CreateIterator()
+        {
+            ConcreteIterator workdaysIterator = new ConcreteIterator(this);
+            return workdaysIterator;
+        }
 
         public User()
         {
@@ -16,6 +23,7 @@ namespace FabPonto.Models
         public string Email { get; set; }
         public IState WorkingState { get; set; }
         public virtual ICollection<Workday> Workdays { get; private set; }
+
         public void ChangeWorkingState()
         {
             WorkingState.ChangeState(this);
