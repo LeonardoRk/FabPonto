@@ -106,6 +106,8 @@
     <Compile Include="DAL\FabContext.cs" />
     <Compile Include="DAL\FabInitializer.cs" />
     <Compile Include="Global.asax.cs" />
+    <Compile Include="Models\ConcreteIterator.cs" />
+    <Compile Include="Models\IIterator.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\DayOfWeek.cs" />
     <Compile Include="Models\IState.cs" />
@@ -193,6 +195,7 @@
     <Content Include="Views\Home\AvailabilityRegister.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\WorkTimeRegister.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
