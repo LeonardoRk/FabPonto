@@ -1,0 +1,29 @@
+@model FabPonto.Models.User
+
+
+<div>
+    @using (@Html.BeginForm())
+    {
+        <div>
+            <label>Nome:</label>
+            @Html.EditorFor(c => c.Name)
+        </div>
+
+        <div>
+            <label>Nome:</label>
+            @Html.EditorFor(c => c.Email)
+        </div>
+
+        <div>
+            <label>Senha:</label>
+            <input type="password"/>
+        </div>
+
+        <div>
+            <label>Confirmar Senha:</label>
+            <input type="password"/>
+        </div>
+
+        <input type="submit" value="Registrar"/>
+    }
+</div>
