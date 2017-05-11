@@ -12,8 +12,8 @@ namespace FabPonto
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
             DataTables.AspNet.Mvc5.Configuration.RegisterDataTables();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }

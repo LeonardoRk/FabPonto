@@ -2,7 +2,7 @@
 {
     public class NotWorkingState:IState
     {
-        public void ChangeState(AbstractUser user)
+        public void ChangeState(IUser user)
         {
             user.WorkingState = new WorkingState();
         }

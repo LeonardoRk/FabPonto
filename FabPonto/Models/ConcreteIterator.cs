@@ -5,13 +5,13 @@ namespace FabPonto.Models
 {
     public class ConcreteIterator : IIterator
     {
-        private AbstractUser user = null;
+        private IUser user = null;
         private const int FIRST_INDEX = 0;
         private int index = 0;
 
-        public ConcreteIterator(AbstractUser abstractUser)
+        public ConcreteIterator(IUser user)
         {
-            this.user = abstractUser;
+            this.user = user;
         }
 
         public object First()

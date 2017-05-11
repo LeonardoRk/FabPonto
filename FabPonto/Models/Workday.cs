@@ -7,6 +7,8 @@ namespace FabPonto.Models
         public Workday()
         {
             this.Users = new HashSet<User>();
+            this.Admins = new HashSet<Admin>();
+
         }
 
         public int ID { get; set; }
@@ -16,5 +18,7 @@ namespace FabPonto.Models
 
 
         public virtual ICollection<User> Users { get; private set; }
+        public virtual ICollection<Admin> Admins { get; private set; }
+
     }
 }
