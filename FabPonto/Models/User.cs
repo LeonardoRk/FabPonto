@@ -9,5 +9,6 @@ namespace FabPonto.Models
             Workdays = new HashSet<Workday>();
             WorkingState = new NotWorkingState();
         }
+
     }
 }
