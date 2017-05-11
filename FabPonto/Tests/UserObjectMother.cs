@@ -12,5 +12,14 @@ namespace FabPonto.Tests
 
             return userDefault;
         }
+
+        public Admin CreateAdmin()
+        {
+            Admin adminDefault = new Admin {Name = "Adney", Email = "adney@gmail", ID = 456 };
+
+            // Schedule shedule = new Schedule {Starting = "08:00", Ending = "18:00"};
+
+            return adminDefault;
+        }
     }
 }
