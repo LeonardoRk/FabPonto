@@ -29,7 +29,7 @@ namespace FabPonto.Controllers
         public ActionResult Register(User user)
         {
             String confPassword = Request.Form["conf_password"];
-            if (user.Password == confPassword)
+            if (user.Password == confPassword && ModelState.IsValid)
             {
                 user.Password = Encryption.sha256_hash(user.Password);
                 _db.Users.Add(user);

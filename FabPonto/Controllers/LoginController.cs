@@ -1,11 +1,17 @@
 ﻿using System;
 using System.DirectoryServices;
+using System.Linq;
 using System.Web.Mvc;
+using FabPonto.DAL;
+using FabPonto.Models;
+using FabPonto.Utils;
 
 namespace FabPonto.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly FabContext _db = FabContext.GetFabContextInstance();
+
         public ActionResult Index()
         {
             return View();
@@ -26,7 +32,8 @@ namespace FabPonto.Controllers
                 senhaUsuario = null;
             }
 
-            if (IsAuthenticated("LDAP://192.168.151.194", nomeUsuario, senhaUsuario))
+
+            if ( IsAuthenticated(nomeUsuario,  Encryption.sha256_hash(senhaUsuario)))
             {
                 Session["NomeUsuario"] = nomeUsuario;
 
@@ -40,7 +47,30 @@ namespace FabPonto.Controllers
             return RedirectToAction("Index");
         }
 
-        public bool IsAuthenticated(string srvr, string usr, string pwd)
+        private bool IsAuthenticated(string nomeUsuario, string senhaUsuario)
+        {
+            bool result = false;
+            User actualUser;
+
+            try
+            {
+                actualUser = _db.Users.FirstOrDefault(user => user.NickName == nomeUsuario && user.Password == senhaUsuario);
+            }
+            catch (Exception ex)
+            {
+                actualUser = null;
+            }
+
+            if (actualUser != null)
+            {
+                result = true;
+            }
+
+
+            return result;
+        }
+
+        public bool IsLdapAuthenticated(string srvr, string usr, string pwd)
         {
             bool authenticated = false;
 
@@ -48,7 +78,7 @@ namespace FabPonto.Controllers
             {
 //                DirectoryEntry entry = new DirectoryEntry(srvr, usr, pwd);
 //                object nativeObject = entry.NativeObject;
-                authenticated = true;
+//                authenticated = true;
             }
             catch (DirectoryServicesCOMException cex)
             {
