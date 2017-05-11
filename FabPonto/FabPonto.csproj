@@ -62,6 +62,7 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
@@ -102,7 +103,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CsvReport.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PdfReport.cs" />
+    <Compile Include="Controllers\Report.cs" />
     <Compile Include="DAL\FabContext.cs" />
     <Compile Include="DAL\FabInitializer.cs" />
     <Compile Include="Global.asax.cs" />
@@ -120,6 +124,8 @@
     <Compile Include="Models\Workday.cs" />
     <Compile Include="Models\WorkingState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\UserObjectMother.cs" />
+    <Compile Include="Models\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\DataTables-1.10.15\.DS_Store" />
@@ -240,4 +246,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

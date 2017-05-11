@@ -10,6 +10,9 @@ namespace FabPonto.Models
         public IState WorkingState { get; set; }
         public virtual ICollection<Workday> Workdays { get; set; }
 
+        public abstract ConcreteIterator CreateIterator();
+
+
         public void ChangeWorkingState()
         {
             WorkingState.ChangeState(this);

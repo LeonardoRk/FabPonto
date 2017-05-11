@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{09E117FA-8722-4D6D-BD4B-9BD2B6560E19}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FabPonto/Models/AbstractUser.cs">
+    <Files>
+      <File FileName="FabPonto/Models/AbstractUser.cs" Line="15" Column="44" />
+      <File FileName="FabPonto/Models/EmptyClass.cs" Line="6" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FabPonto PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>
