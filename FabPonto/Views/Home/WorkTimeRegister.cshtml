@@ -18,6 +18,8 @@
 
             UserFactoryMethod createUser = new UserFactoryMethod();
             AbstractUser user = createUser.FactoryUser(0);
+
+            user.ChangeWorkingState();
         }
 
         alert("Created User");
@@ -49,13 +51,13 @@
         @if (user.WorkingState.GetType() == workingState.GetType())
         {
             <text>
-                alert("trabalhando ");
+                alert("@DateTime.Now.ToString("h:mm:ss tt")");
             </text>
         }
         else if (user.WorkingState.GetType() == notWorkingState.GetType())
         {
             <text>
-                alert("nao trabalhando ");
+                alert("@DateTime.Now.ToString("h:mm:ss tt")");
             </text>
         }
         else

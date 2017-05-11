@@ -107,6 +107,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PdfReport.cs" />
     <Compile Include="Controllers\Report.cs" />
+    <Compile Include="Controllers\WorktimeRegisterController.cs" />
     <Compile Include="DAL\FabContext.cs" />
     <Compile Include="DAL\FabInitializer.cs" />
     <Compile Include="Global.asax.cs" />
