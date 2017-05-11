@@ -101,18 +101,19 @@ namespace FabPonto.Controllers
         [HttpGet]
         public ActionResult GetWorkdays()
         {
+            object json;
+            object workDays;
             using (var db = new FabContext())
             {
                 var currentUser = db.Users.First();
-                var workDays = currentUser.Workdays;
-                var json = JsonConvert.SerializeObject(workDays, Formatting.Indented, new JsonSerializerSettings
+                workDays = currentUser.Workdays.ToList();
+                json = JsonConvert.SerializeObject(workDays, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 });
-
-                return Json(json, JsonRequestBehavior.AllowGet);
             }
 
+            return Json(workDays, JsonRequestBehavior.AllowGet);
         }
 
         private IEnumerable<Dictionary<string, string>> GetWorkdayData()
@@ -148,42 +149,37 @@ namespace FabPonto.Controllers
 
         public void GenerateReport()
         {
-            var data = new List<string[]>();
-            using (var db = new FabContext())
-            {
-                foreach (var user in db.Users.ToList())
-                {
-                    var userName = user.Name;
-                    var workdays = user.Workdays;
-                    var availability = "";
-                    foreach (var workday in workdays)
-                    {
-                        var dayID = workday.DayOfWeekID;
-                        var schedID = workday.ScheduleID;
-                        var dayOfWeek = db.DaysOfWeek.FirstOrDefault(day => day.ID == dayID);
-                        var schedule = db.Schedules.FirstOrDefault(sched => sched.ID == schedID);
-                        availability += dayOfWeek.Name + " das " + schedule.Starting + " às " + schedule.Ending + '\n';
-                    }
-                    var userAvailability = new[]
-                    {
-                        userName,
-                        availability
-                    };
-                    data.Add(userAvailability);
-                }
-            }
-
             using (var csv = new CsvWriter(new StreamWriter("availabilityReporter.csv")))
             {
                 csv.WriteField("Nome");
                 csv.WriteField("Disponibilidade");
                 csv.NextRecord();
-
-                foreach (var userAvailability in data)
+                using (var db = new FabContext())
                 {
-                    csv.WriteField(userAvailability[0]);
-                    csv.WriteField(userAvailability[1]);
-                    csv.NextRecord();
+                    foreach (var user in db.Users.ToList())
+                    {
+                        csv.WriteField(user.Name);
+                        csv.WriteField(user.Workdays.First().ScheduleID);
+                        csv.NextRecord();
+                    }
+//                    foreach (var user in db.Users.ToList())
+//                    {
+//                        var userName = user.Name;
+//                        var workdays = user.Workdays;
+//                        var availability = "";
+//                        foreach (var workday in workdays)
+//                        {
+//                            var dayID = workday.DayOfWeekID;
+//                            var schedID = workday.ScheduleID;
+//                            var dayOfWeek = db.DaysOfWeek.FirstOrDefault(day => day.ID == dayID);
+//                            var schedule = db.Schedules.FirstOrDefault(sched => sched.ID == schedID);
+//                            availability += dayOfWeek.Name + " das " + schedule.Starting + " às " + schedule.Ending +
+//                                            '\n';
+//                        }
+//                        csv.WriteField(userName);
+//                        csv.WriteField(availability);
+//                        csv.NextRecord();
+//                    }
                 }
             }
         }
