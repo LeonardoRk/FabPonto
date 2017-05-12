@@ -178,6 +178,8 @@ namespace FabPonto.Controllers
                         concreteUser.Workdays = workdays;
                         workdayIterator = concreteUser.CreateIterator();
 
+                        if (concreteUser.Workdays.Count >= 1)
+                        {
                             workday = workdayIterator.First();
 
                             while (workday != null)
@@ -191,7 +193,9 @@ namespace FabPonto.Controllers
                                 workday = workdayIterator.Next();
 
                             }
-                                workdayIterator.set_index(0);
+                            workdayIterator.set_index(0);
+                        }
+
                             csv.WriteField(userName);
                             csv.WriteField(availability);
                             csv.NextRecord();
