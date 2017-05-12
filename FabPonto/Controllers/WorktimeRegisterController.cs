@@ -25,24 +25,13 @@ namespace FabPonto.Controllers
         [System.Web.Http.HttpGet]
         public string SaveUserWorkTime()
         {
-
-            String currentTime = GetCurrentTime();
             String userState = null;
+            IUser currentUser = LoginController.User;
 
-            IUser currentUser = null;
 
-            using (var db = new FabContext())
-            {
-                currentUser = db.Users.First();
-
-            }
-
-            if (currentUser != null)
+            if (currentUser != null && Session["UserName"] != null)
             {
                 currentUser.ChangeWorkingState();
-
-                //save current time on database
-
                 userState = currentUser.WorkingState.GetType().ToString();
             }
 

@@ -12,7 +12,7 @@ namespace FabPonto.Controllers
     public class LoginController : Controller
     {
         private readonly FabContext _db = new FabContext();
-
+        public static IUser User;
 
         public ActionResult Index()
         {
@@ -39,6 +39,10 @@ namespace FabPonto.Controllers
 
             if (context.Login(nomeUsuario,  senhaUsuario))
             {
+                using (var db = new FabContext())
+                {
+                    User = db.Users.FirstOrDefault(a => a.NickName == nomeUsuario);
+                }
                 return RedirectToAction("Index", "Home");
             }
             else
