@@ -22,7 +22,9 @@ namespace FabPonto.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public IState WorkingState { get; set; }
-        public virtual ICollection<Workday> Workdays { get; private set; }
+        public virtual ICollection<Workday> Workdays { get; set; }
+
+
 
         public void ChangeWorkingState()
         {

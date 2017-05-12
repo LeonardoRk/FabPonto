@@ -10,6 +10,7 @@ using CsvHelper;
 using FabPonto.DAL;
 using DataTables.AspNet.Core;
 using DataTables.AspNet.Mvc5;
+using FabPonto.Models;
 using Newtonsoft.Json;
 
 namespace FabPonto.Controllers
@@ -159,21 +160,34 @@ namespace FabPonto.Controllers
                 csv.WriteField("Nome");
                 csv.WriteField("Disponibilidade");
                 csv.NextRecord();
+
+                UserFactoryMethod userCreator = new UserFactoryMethod();
+                IUser concreteUser = userCreator.FactoryUser(0);
+                ConcreteIterator workdayIterator = null;
+                Workday workday = null;
+
                 using (var db = new FabContext())
                 {
+
                     foreach (var user in db.Users.ToList())
                     {
                         var userName = user.Name;
-                        var workdays = user.Workdays;
                         var availability = "";
-                        foreach (var workday in workdays)
+                        ICollection<Workday> workdays =  user.Workdays;
+
+                        concreteUser.Workdays = workdays;
+                        workdayIterator = user.CreateIterator();
+                        workday = (Workday) workdayIterator.First();
+
+                        while (workdayIterator.HasNext())
                         {
-                            var dayID = workday.DayOfWeekID;
-                            var schedID = workday.ScheduleID;
-                            var dayOfWeek = db.DaysOfWeek.FirstOrDefault(day => day.ID == dayID);
-                            var schedule = db.Schedules.FirstOrDefault(sched => sched.ID == schedID);
+                            var dayId = workday.DayOfWeekID;
+                            var schedId = workday.ScheduleID;
+                            var dayOfWeek = db.DaysOfWeek.FirstOrDefault(day => day.ID == dayId);
+                            var schedule = db.Schedules.FirstOrDefault(sched => sched.ID == schedId);
                             availability += dayOfWeek.Name + " das " + schedule.Starting + " às " + schedule.Ending +
-                                            '\n';
+                             '\n';
+                            workday = (Workday) workdayIterator.Next();
                         }
                         csv.WriteField(userName);
                         csv.WriteField(availability);
