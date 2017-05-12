@@ -2,12 +2,30 @@
 
 namespace FabPonto.Models
 {
-    public sealed class Admin:AbstractUser
+    public class Admin:IUser
     {
+        public ConcreteIterator CreateIterator()
+        {
+            ConcreteIterator workdaysIterator = new ConcreteIterator(this);
+            return workdaysIterator;
+        }
+
         public Admin()
         {
-            Workdays = new HashSet<Workday>();
+            this.Workdays = new HashSet<Workday>();
             WorkingState = new NotWorkingState();
+        }
+
+        public int ID { get; set; }
+        public string NickName { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public IState WorkingState { get; set; }
+        public virtual ICollection<Workday> Workdays { get;  set; }
+        public void ChangeWorkingState()
+        {
+            WorkingState.ChangeState(this);
         }
     }
 }

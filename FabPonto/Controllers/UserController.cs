@@ -8,9 +8,10 @@ using FabPonto.Utils;
 
 namespace FabPonto.Controllers
 {
+    [AllowAnonymous]
     public class UserController : Controller
     {
-        private readonly FabContext _db = FabContext.GetFabContextInstance();
+        private readonly FabContext _db = new FabContext();
 
         public ActionResult Index()
         {

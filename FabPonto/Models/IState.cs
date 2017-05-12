@@ -2,6 +2,6 @@
 {
     public interface IState
     {
-        void ChangeState(AbstractUser user);
+        void ChangeState(IUser user);
     }
 }

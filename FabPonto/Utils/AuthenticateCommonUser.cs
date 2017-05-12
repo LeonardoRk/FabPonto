@@ -12,9 +12,6 @@ namespace FabPonto.Utils
 {
     public class AuthenticateCommonUser : AuthenticateStrategy
     {
-        private readonly FabContext _db = FabContext.GetFabContextInstance();
-
-
         public override bool Login(string nickName, string password)
         {
             SessionType = "common";
@@ -31,25 +28,28 @@ namespace FabPonto.Utils
         private bool IsAuthenticated(string nickName, string password)
         {
             bool result = false;
-            AbstractUser actualUser = null;
+            IUser actualUser = null;
 
             try
             {
-                actualUser = _db.Users.FirstOrDefault(u => u.NickName == nickName && u.Password == password);
-                if (actualUser != null)
+                using (var db = new FabContext())
                 {
-                    CreateSession("User", nickName);
-                    result = true;
-                }
+                    actualUser = db.Users.FirstOrDefault(u => u.NickName == nickName && u.Password == password);
+                    if (actualUser != null)
+                    {
+                        CreateSession("User", nickName);
+                        result = true;
+                    }
 
-                actualUser = _db.Admins.FirstOrDefault(u => u.NickName == nickName && u.Password == password);
-                if (actualUser != null)
-                {
-                    CreateSession("Admin", nickName);
-                    result = true;
-                }
+                    actualUser = db.Admins.FirstOrDefault(u => u.NickName == nickName && u.Password == password);
+                    if (actualUser != null)
+                    {
+                        CreateSession("Admin", nickName);
+                        result = true;
+                    }
 
-                return result;
+                    return result;
+                }
             }
             catch (Exception ex)
             {
