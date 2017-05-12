@@ -12,13 +12,16 @@ namespace FabPonto.Controllers
     {
         private readonly FabContext _db = FabContext.GetFabContextInstance();
 
+
         public ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login()
+        public ActionResult CommonLogin()
         {
+            AuthenticateContext context = new AuthenticateContext(new AuthenticateCommonUser());
+
             string nomeUsuario;
             string senhaUsuario;
             try
@@ -33,71 +36,22 @@ namespace FabPonto.Controllers
             }
 
 
-            if ( IsAuthenticated(nomeUsuario,  Encryption.sha256_hash(senhaUsuario)))
+            if (context.Login(nomeUsuario,  senhaUsuario))
             {
-                Session["NomeUsuario"] = nomeUsuario;
-
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 ModelState.AddModelError("", "Login não efetuado. Favor verificar o login e a senha e tentar novamente.");
+                return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
-        }
-
-        private bool IsAuthenticated(string nomeUsuario, string senhaUsuario)
-        {
-            bool result = false;
-            User actualUser;
-
-            try
-            {
-                actualUser = _db.Users.FirstOrDefault(user => user.NickName == nomeUsuario && user.Password == senhaUsuario);
-            }
-            catch (Exception ex)
-            {
-                actualUser = null;
-            }
-
-            if (actualUser != null)
-            {
-                result = true;
-            }
-
-
-            return result;
-        }
-
-        public bool IsLdapAuthenticated(string srvr, string usr, string pwd)
-        {
-            bool authenticated = false;
-
-            try
-            {
-//                DirectoryEntry entry = new DirectoryEntry(srvr, usr, pwd);
-//                object nativeObject = entry.NativeObject;
-//                authenticated = true;
-            }
-            catch (DirectoryServicesCOMException cex)
-            {
-                //Não autenticado; A razão é cex
-                System.Diagnostics.Debug.WriteLine(cex.Message);
-
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                //Não autenticado; razão é ex ( é opicional o uso dessa)
-            }
-
-            return authenticated;
         }
 
         public ActionResult LogOff()
         {
-            Session["NomeUsuario"] = null;
+            AuthenticateContext context = new AuthenticateContext(new AuthenticateCommonUser());
+
+            context.Logout();
 
             return RedirectToAction("Index", "Home");
         }

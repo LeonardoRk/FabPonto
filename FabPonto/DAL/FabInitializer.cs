@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FabPonto.Models;
+using FabPonto.Utils;
 
 namespace FabPonto.DAL
 {
@@ -18,6 +19,14 @@ namespace FabPonto.DAL
 //
 //            users.ForEach(s => context.Users.Add(s));
 //            context.SaveChanges();
+
+            context.Admins.Add(new Admin
+            {
+                NickName = "admin",
+                Password = Encryption.sha256_hash("admin"),
+                Name = "Admin"
+
+            });
 
             var daysOfWeek = new List<DayOfWeek>
             {

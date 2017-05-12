@@ -122,6 +122,9 @@
     <Compile Include="Models\WorkingState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\UserObjectMother.cs" />
+    <Compile Include="Utils\AuthenticateContext.cs" />
+    <Compile Include="Utils\AuthenticateStrategy.cs" />
+    <Compile Include="Utils\AuthenticateCommonUser.cs" />
     <Compile Include="Utils\Encryption.cs" />
   </ItemGroup>
   <ItemGroup>

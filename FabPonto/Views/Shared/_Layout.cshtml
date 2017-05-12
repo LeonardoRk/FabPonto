@@ -27,9 +27,9 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                @if (Session["NomeUsuario"] != null)
+                @if (Session["UserName"] != null)
                 {
-                    <li>@Html.ActionLink("Registrar Horário", "AvailabilityRegister", "Home")</li>
+                        <li>@Html.ActionLink("Registrar Horário", "AvailabilityRegister", "Home")</li>
                 }
                 else
                 {
@@ -39,11 +39,11 @@
                 }
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if (Session["NomeUsuario"] != null)
+                @if (Session["UserName"] != null)
                 {
                     <li>
                         <a lass="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            @Session["NomeUsuario"]
+                            @Session["UserName"]
                             <i class="fa fa-cog" aria-hidden="true"></i>
                         </a>
                         <ul class="dropdown-menu">
