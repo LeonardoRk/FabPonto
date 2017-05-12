@@ -8,7 +8,7 @@ namespace FabPonto.Models
         string Name { get; set; }
         string Email { get; set; }
         IState WorkingState { get; set; }
-        ICollection<Workday> Workdays { get; }
+        ICollection<Workday> Workdays { get; set; }
         ConcreteIterator CreateIterator();
 
         void ChangeWorkingState();

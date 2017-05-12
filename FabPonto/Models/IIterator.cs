@@ -3,12 +3,12 @@
     public interface IIterator
     {
 
-        object First();
+        Workday First();
 
-        object Next();
+        Workday Next();
 
         bool HasNext();
 
-        object CurrentItem();
+        Workday CurrentItem();
     }
 }
