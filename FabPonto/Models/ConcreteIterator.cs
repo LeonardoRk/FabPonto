@@ -7,46 +7,44 @@ namespace FabPonto.Models
     {
         private IUser user = null;
         private const int FIRST_INDEX = 0;
-        private int index = 0;
+        private int _index = 0;
+
+        public void set_index(int index)
+        {
+            this._index = index;
+        }
 
         public ConcreteIterator(IUser user)
         {
             this.user = user;
         }
 
-        public object First()
+        public Workday First()
         {
-            object firstObject = this.user.Workdays.ElementAt(FIRST_INDEX);
+            Workday firstObject = this.user.Workdays.ElementAt(FIRST_INDEX);
             return firstObject;
         }
 
-        public object Next()
+        public Workday Next()
         {
-            int nextIndex = index++;
+            Workday workday = null;
 
-            object nextOBject = this.user.Workdays.ElementAt(nextIndex);
-            return nextOBject;
+            if (_index < this.user.Workdays.Count - 1)
+            {
+                workday = this.user.Workdays.ElementAt(++_index);
+            }
+            return workday;
         }
 
         public bool HasNext()
         {
-            Boolean hasNext = false;
+            return _index >= this.user.Workdays.Count;
 
-            if (index <= this.user.Workdays.Count)
-            {
-                hasNext = true;
-            }
-            else
-            {
-                //nothing to do
-            }
-
-            return hasNext;
         }
 
-        public object CurrentItem()
+        public Workday CurrentItem()
         {
-            object currentItem = this.user.Workdays.ElementAt(index);
+            Workday currentItem = this.user.Workdays.ElementAt(_index);
             return currentItem;
         }
     }
