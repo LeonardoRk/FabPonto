@@ -23,7 +23,7 @@ namespace FabPonto.Controllers
         public ActionResult Register()
         {
             User user = new User();
-            return View(user);
+            return View("_Login");
         }
 
         [HttpPost]

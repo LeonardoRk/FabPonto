@@ -4,7 +4,7 @@ using FabPonto.Utils;
 
 namespace FabPonto.DAL
 {
-    public class FabInitializer : System.Data.Entity. DropCreateDatabaseIfModelChanges<FabContext>
+    public class FabInitializer : System.Data.Entity. DropCreateDatabaseAlways<FabContext>
     {
         protected override void Seed(FabContext context)
         {

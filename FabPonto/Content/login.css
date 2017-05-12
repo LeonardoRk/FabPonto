@@ -8,10 +8,6 @@
     width: 350px;
 }
 
-#login-modal input[type=text], input[type=password] {
-    margin-top: 10px;
-}
-
 #div-login-msg,
 #div-lost-msg,
 #div-register-msg {
@@ -92,7 +88,8 @@
 
 }
 
-#login_username, #login_password {
+#login_username, #login_password, #register_user,
+#register_name, #register_email, #register_password, #register_password_confirm {
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;

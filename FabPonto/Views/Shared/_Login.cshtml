@@ -1,0 +1,63 @@
+@model FabPonto.Models.User
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" align="center">
+        <img src="../../Content/Images/logo_transparente.png">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div id="div-forms">
+
+        <form action="@Url.Action("CommonLogin", "Login")" method="post" id="login-form">
+          <div class="modal-body">
+            @Html.TextBox("nomeUsuario", null, new
+            {
+              @class = "form-control",
+              @id = "login_username",
+              @placeholder = "Usuário"
+            })
+            @Html.Password("senhaUsuario", null, new
+            {
+              @class = "form-control",
+              @id = "login_password",
+              @placeholder = "Senha"
+            })
+          </div>
+          <div class="modal-footer">
+            <div >
+              <button type="submit" class="btn btn-primary btn-lg btn-block btn-login">Login</button>
+            </div>
+            <button id="login_register_btn" type="button" class="btn btn-link">Registrar</button>
+          </div>
+        </form>
+        <form id="register-form" action="@Url.Action("Register", "User")" method="post" style="display:none;">
+          <div class="modal-body">
+            @using (@Html.BeginForm())
+            {
+                @Html.TextBoxFor(c => c.NickName, new {@id = "register_user", @class = "form-control", @placeholder = "Digite seu Usuário", @required = "on"})
+
+                @Html.TextBoxFor(c => c.Name, new {@id = "register_name", @class = "form-control", @placeholder = "Digite seu Nome", @required = "on"})
+
+                @Html.TextBoxFor(c => c.Email, new {@type = "Email", @id = "register_email", @class = "form-control", @placeholder = "Digite seu Email", @required = "on"})
+
+                @Html.TextBoxFor(c => c.Password, new {@id = "register_password", @class = "form-control", @type = "password", @placeholder = "Digite sua senha", @required = "on"})
+
+                <input type="password" id="register_password_confirm" placeholder="Confirme sua senha" name="conf_password" class="form-control form-group", required="on"/>
+
+                <div class="modal-footer">
+                  <div >
+                    <button type="submit" class="btn btn-primary btn-lg btn-block btn-login">Registrar</button>
+                  </div>
+                  <button id="register_login_btn" type="button" class="btn btn-link">Voltar ao Login</button>
+                </div>
+            }
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

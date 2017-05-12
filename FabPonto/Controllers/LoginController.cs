@@ -16,7 +16,7 @@ namespace FabPonto.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("_Login");
         }
         [HttpPost]
         public ActionResult CommonLogin()

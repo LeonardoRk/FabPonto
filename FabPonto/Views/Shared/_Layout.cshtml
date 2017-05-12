@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="~/Content/CSS/font-awesome.min.css"/>
     <link rel="stylesheet" href="~/Content/datatables.min.css"/>
     <link rel="stylesheet" href="~/Content/site.css" />
-    <link rel="shortcut icon" href="~/Content/Images/favicon.ico"/>
     <link rel="stylesheet" href="../../Content/login.css"/>
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico"/>
     <script src="~/Scripts/jquery-3.1.1.js"></script>
-    <script src="../../Scripts/login.js"></script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -128,13 +127,14 @@
         </div>
 
     </div>
-
+    @Html.Partial("_Login");
 </footer>
 
 <environment names="Development">
     <script src="~/Scripts/datatables.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/site.js"></script>
+    <script src="~/Scripts/login.js"></script>
 </environment>
 
 @RenderSection("scripts", required: false)
