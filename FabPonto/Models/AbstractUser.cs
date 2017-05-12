@@ -1,32 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace FabPonto.Models
 {
-    public class User:IUser
+    public abstract class AbstractUser
     {
-        private IIterator workdayIterator = null;
-
-        public ConcreteIterator CreateIterator()
-        {
-            ConcreteIterator workdaysIterator = new ConcreteIterator(this);
-            return workdaysIterator;
-        }
-
-        public User()
-        {
-            this.Workdays = new HashSet<Workday>();
-            WorkingState = new NotWorkingState();
-        }
-
         public int ID { get; set; }
+        [Index(IsUnique=true)]
         public string NickName { get; set; }
-        public string Password { get; set; }
         public string Name { get; set; }
+        [Index(IsUnique=true)]
         public string Email { get; set; }
         public IState WorkingState { get; set; }
         public virtual ICollection<Workday> Workdays { get; set; }
-
-
+        public string Password { get; set; }
 
         public void ChangeWorkingState()
         {

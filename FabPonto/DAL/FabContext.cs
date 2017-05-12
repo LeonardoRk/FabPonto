@@ -16,7 +16,6 @@ namespace FabPonto.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Admin> Admins { get; set; }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
