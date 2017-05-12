@@ -42,7 +42,12 @@ namespace FabPonto.Utils
                     result = true;
                 }
 
-
+                actualUser = _db.Admins.FirstOrDefault(u => u.NickName == nickName && u.Password == password);
+                if (actualUser != null)
+                {
+                    CreateSession("Admin", nickName);
+                    result = true;
+                }
 
                 return result;
             }

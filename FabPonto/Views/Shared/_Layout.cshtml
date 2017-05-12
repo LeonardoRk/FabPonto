@@ -29,7 +29,15 @@
             <ul class="nav navbar-nav">
                 @if (Session["UserName"] != null)
                 {
+                     if (Session["UserType"].ToString() == "User")
+                     {
                         <li>@Html.ActionLink("Registrar Horário", "AvailabilityRegister", "Home")</li>
+                     }
+
+                    if (Session["UserType"].ToString() == "Admin")
+                    {
+                        <li>Voce é um admin</li>
+                    }
                 }
                 else
                 {
