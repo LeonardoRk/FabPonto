@@ -33,6 +33,7 @@
                      {
                          <li>@Html.ActionLink("Registrar Disponibilidade", "AvailabilityRegister", "Home")</li>
                          <li>@Html.ActionLink("Registrar Entrada/Saída" , "WorkTimeRegister" , "Home")</li>
+                         <li>@Html.ActionLink("Download CSV" , "DownloadCSV" , "Home")</li>
                      }
 
                     if (Session["UserType"].ToString() == "Admin")
