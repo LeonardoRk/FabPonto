@@ -2,6 +2,10 @@
   ViewBag.Title = "Home Page";
 }
 
+
+<link rel="stylesheet" href="../../Content/login.css"/>
+<script src="../../Scripts/login.js"></script>
+
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -27,5 +31,43 @@
     <h2>Web Hosting</h2>
     <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
     <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+  </div>
+</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" align="center">
+        <img src="../../Content/Images/logo_transparente.png">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div id="div-forms">
+
+        <form action="@Url.Action("Login", "Login")" method="post" id="login-form">
+          <div class="modal-body">
+            @Html.TextBox("nomeUsuario", null, new
+            {
+              @class = "form-control",
+              @id = "login_username",
+              @placeholder = "Usuário"
+            })
+            @Html.Password("senhaUsuario", null, new
+            {
+              @class = "form-control",
+              @id = "login_password",
+              @placeholder = "Senha"
+            })
+          </div>
+          <div class="modal-footer">
+            <div >
+              <button type="submit" class="btn btn-primary btn-lg btn-block btn-login">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="~/Content/datatables.min.css"/>
     <link rel="stylesheet" href="~/Content/site.css" />
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico"/>
+    <link rel="stylesheet" href="../../Content/login.css"/>
     <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="../../Scripts/login.js"></script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -31,7 +33,7 @@
                 <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                 <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Registrar Disponibilidade", "AvailabilityRegister", "Home")</li>
-                <li>@Html.ActionLink("Registrar Entrada/Saída" , "WorkTimeRegister" , "Home")</li>
+                <li>@Html.ActionLink("Registrar Entrada/Saída", "WorkTimeRegister", "Home")</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Session["NomeUsuario"] != null)
@@ -50,7 +52,7 @@
                 }
                 else
                 {
-                    <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    <li><a href="#" class="login"> Login </a></li>
                 }
             </ul>
 
@@ -65,7 +67,8 @@
 
 <footer class="footer-distributed">
     <div class="footer-left">
-        <h3>Fab<span>Ponto</span></h3>
+        <h3>Fab<span>Ponto</span>
+        </h3>
         <p class="footer-links">
             <a href="/Home">Home</a>
             ·
@@ -79,7 +82,8 @@
 
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>St. Leste Projeção A - Gama Leste, 72444-240</span> Brasília - DF</p>
+            <p><span>St. Leste Projeção A - Gama Leste, 72444-240</span> Brasília - DF
+            </p>
         </div>
 
         <div>
@@ -89,7 +93,8 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:marciasillva@gmail.com">marciasillva@gmail.com</a></p>
+            <p><a href="mailto:marciasillva@gmail.com">marciasillva@gmail.com</a>
+            </p>
         </div>
 
     </div>
